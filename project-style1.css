@@ -1,0 +1,166 @@
+/* General Body Styles */
+body {
+    font-family: 'Lato', "Segoe UI", sans-serif; /* (NEW) Font */
+    line-height: 1.8;
+    margin: 0;
+    color: #333;
+    background-color: #f4f7f6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header Styling */
+.project-header {
+    background: linear-gradient(45deg, #34495e, #2c3e50); /* (NEW) Gradient */
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+.project-header h1 {
+    margin: 0;
+    font-family: 'Merriweather', serif; /* (NEW) Font */
+    font-size: 2.8rem;
+}
+.project-header p {
+    margin: 10px 0 20px 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 50px; /* (NEW) Pill shape */
+    transition: all 0.3s ease;
+}
+.back-link:hover {
+    background: white;
+    color: #2c3e50;
+    transform: translateY(-2px);
+}
+
+/* Main Container Layout */
+.project-container {
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 1200px;
+    margin: 50px auto;
+    gap: 50px;
+    padding: 0 20px;
+}
+
+/* Main Content Area */
+.project-content {
+    flex: 3;
+    background: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+}
+.project-content section {
+    margin-bottom: 50px;
+}
+.project-content h2 {
+    font-family: 'Merriweather', serif; /* (NEW) Font */
+    font-size: 2rem;
+    color: #2c3e50;
+}
+.project-content h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    color: #34495e;
+}
+
+/* (NEW) Code Block Container */
+.code-block-container {
+    position: relative;
+}
+pre {
+    background-color: #2d2d2d;
+    color: #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+}
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.copy-btn:hover {
+    background: #555;
+}
+.copy-btn.copied {
+    background: #28a745; /* Green color for success */
+}
+
+/* Sticky Navigation Sidebar */
+.project-nav {
+    flex: 1;
+    position: sticky;
+    top: 50px;
+    align-self: flex-start;
+    max-height: 85vh; /* Set a max height (85% of viewport height) */
+    overflow-y: auto;  /* Add a scrollbar if the content overflows */
+}
+.project-nav h3 {
+    margin-top: 0;
+}
+.project-nav ul {
+    list-style: none;
+    padding: 0;
+}
+.project-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 0;
+    border-left: 3px solid transparent;
+    padding-left: 10px;
+    transition: all 0.3s ease;
+}
+.project-nav ul li a:hover {
+    color: #6c5ce7;
+    border-left-color: #6c5ce7;
+}
+.project-nav ul ul {
+    padding-left: 20px;
+}
+
+.project-content img {
+    display: block;
+    margin: 30px auto; 
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+/* (NEW) Active Link Style for Scrollspy */
+.project-nav ul li a.active {
+    color: #6c5ce7;
+    border-left-color: #6c5ce7;
+}
+
+/* Image Styling */
+.project-content img {
+    display: block;
+    margin: 40px auto; 
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}

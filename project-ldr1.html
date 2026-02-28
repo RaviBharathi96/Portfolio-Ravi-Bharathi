@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Automatic Light Control Using LDR</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="project-style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+
+    <header class="project-header">
+        <h1 data-aos="fade-down">Automatic Light Control Using LDR</h1>
+        <p data-aos="fade-down" data-aos-delay="100">A detailed report on designing and building an embedded automation solution.</p>
+        <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+    </header>
+
+    <div class="project-container">
+        <main class="project-content">
+
+            <section id="intro" data-aos="fade-up">
+                <h2>Automatic Light Control Using LDR</h2>
+                <p>The project utilizes an LDR (Light Dependent Resistor) and an Arduino microcontroller to create an automatic light control system. An LDR is a sensor whose resistance varies with light intensity—it decreases as light increases. The Arduino, an open-source electronics platform, reads the analog signal from the LDR and makes decisions based on the light level. This allows the system to automatically turn lights ON or OFF depending on the surrounding brightness, making it efficient and energy-saving.</p>
+            </section>
+
+            <section id="arduino" data-aos="fade-up">
+                <h2>The Arduino Platform</h2>
+                <h3 id="arduino-history" data-aos="fade-up">History and Evolution of Arduino </h3>
+                <p>Arduino was born out of a need to provide artists, designers, and hobbyists with an easy-to-use platform for creating interactive projects. It originated in 2005 at the Interaction Design Institute Ivrea (IDII) in Ivrea, Italy. The founders, including Massimo Banzi and David Cuartielles, sought to simplify electronics prototyping. The first Arduino board was based on the ATmega8 microcontroller and was named “Arduino” after a bar in Ivrea. </p>
+                <p>Over the years, Arduino has evolved from simple 8-bit boards to more powerful 32-bit versions and even FPGA-based boards. Some major versions include: - Arduino Uno: The most popular and widely used board - Arduino Mega: More I/O pins and memory - Arduino Nano: Compact and breadboard-friendly - Arduino Due: 32-bit ARM Cortex-M3 processor - Arduino MKR and Portenta series: Designed for IoT and industrial applications </p>
+                <img src="image/Arduino.png" alt="A description of the image" data-aos="zoom-in">
+            
+                <h3 id="Uno" data-aos="fade-up">Arduino Uno Architecture </h3>
+                <p>Arduino Uno is based on the ATmega328P microcontroller. It features: - 14 digital input/output pins (of which 6 can be used as PWM outputs) - 6 analog inputs - 16 MHz quartz crystal - USB connection - Power jack - ICSP header - Reset button</p>
+                <img src="image/Arduino Uno.png" alt="Arduino Uno Architecture Diagram" data-aos="zoom-in">
+                <p><strong>Diagram Overview</strong></p>
+                <ul>
+                    <li>CPU : ATmega328P</li>
+                    <li>Flash memory: 32 KB</li>
+                    <li>SRAM: 2 KB</li>
+                    <li>EEPROM: 1 KB </li>
+                    <li>Operating voltage: 5V</li>
+                    <li>Clock speed: 16 MHz</li>
+                </ul>
+
+                <h3 id="GPIO" data-aos="fade-up">GPIO, Analog-Digital Pins, and Timers</h3>
+                <p id="GPIO1"><strong>GPIO (General Purpose Input/Output)</strong></p>
+                <ul>
+                    <li>Digital pins: D0 to D13</li>
+                    <li>Can be configured as INPUT or OUTPUT</li>
+                    <li>Used to control LEDs, motors, read button states, etc.</li>
+                </ul>
+                <p id="GPIO2"><strong>Analog Pins</strong></p>
+                <ul>
+                    <li>Pins A0 to A5</li>
+                    <li>Read analog signals using ADC (10-bit resolution)</li>
+                    <li>Typically used with sensors like LDRs, temperature sensors</li>
+                </ul>
+                <p id="GPIO3"><strong>Timers</strong></p>
+                <ul>
+                    <li>Timer0, Timer1, and Timer2</li>
+                    <li>Used for delay(), millis(), PWM generation, and interrupts</li>
+                </ul>
+                <h3 id="code" data-aos="fade-up">Coding with Arduino IDE</h3>
+                <p>The Arduino IDE is a simple development environment that uses a simplified version of C/C++. </p>
+                <p><strong>Basic Structure of a Sketch:</strong></p>
+                <pre><code>
+void setup() { 
+    pinMode(13, OUTPUT); 
+} 
+void loop() { 
+    digitalWrite(13, HIGH); 
+    delay(1000); 
+    digitalWrite(13, LOW); 
+    delay(1000); 
+}
+                </code></pre>
+                <p><strong>Features</strong></p>
+                <ul>
+                    <li>Upload via USB</li>
+                    <li>Serial monitor for debugging</li>
+                    <li>Built-in libraries</li>
+                    <li>Board manager and library manager for extensions</li>
+                </ul>
+
+
+            <h3 id="project" data-aos="fade-up">Sample Projects and Libraries</h3>
+            <p><strong>Sample Projects</strong>
+            <ul>
+                <li>Automatic Plant Watering System</li>
+                <li>Smart Home Lighting Control</li>
+                <li>Weather Station with Sensors</li>
+            </ul></p>
+            <p><strong>Popular Libraries</strong>
+            <ul>
+                <li>Servo.h: For controlling servo motors</li>
+                <li>LiquidCrystal.h: For LCDs </li>
+                <li>Wire.h: For I2C communication </li>
+                <li>SPI.h: For SPI devices</li>
+                <li>SoftwareSerial.h: For additional serial ports</li>
+            </ul>
+            </p>
+
+
+            <h3 id="sensor" data-aos="fade-up">Sensors and Actuators</h3>
+            <p><strong>Common Sensors</strong>
+                <ul>
+                    <li>LDR (Light Dependent Resistor)</li>
+                    <li>DHT11/DHT22 (Temperature and Humidity)</li>
+                    <li>Ultrasonic sensors (HC-SR04)</li>
+                    <li>PIR motion sensors</li>
+                    <li>Gas sensors (MQ series)</li>
+                </ul>
+            </p>
+            <p><strong>Common Actuators</strong>
+                <ul>
+                    <li>LEDs (Light Emitting Diodes)</li>
+                    <li>DC motors</li>
+                    <li>Servo motors</li>
+                    <li>Relays</li>
+                    <li>Buzzers</li>
+                </ul></p>
+
+            <h3 id="communication" data-aos="fade-up">Communication Protocols</h3>
+            <p><strong>I2C (Inter-Integrated Circuit)</strong>
+                <ul>
+                    <li>Two wires: SDA (data), SCL (clock)</li>
+                    <li>Used for sensors, RTC modules, displays</li>
+                </ul>
+            </p>
+            <p><strong>SPI (Serial Peripheral Interface)</strong>
+                <ul>
+                    <li>Four wires: MOSI, MISO, SCK, SS</li>
+                    <li>Faster than I2C, suitable for high-speed data transfer</li>
+                    <li>Used with SD cards, displays, and sensors</li>
+                </ul>
+            </p>
+            <p><strong>UART (Universal Asynchronous Receiver/Transmitter)</strong>
+                <ul>
+                    <li>Serial communication (TX, RX)</li>
+                    <li>Used for serial monitor, Bluetooth modules (HC-05)</li>
+                </ul>
+            </p>
+
+
+            <h3 id="iot" data-aos="fade-up"> IoT Integration Basics</h3>
+            <p>Arduino can be connected to the internet using: - Ethernet Shields - Wi-Fi Modules (ESP8266, ESP32) - GSM/GPRS modules (SIM800L)</p>
+            <p><strong>Common IoT Platforms</strong>
+                <ul>
+                    <li>Blynk</li>
+                    <li>Thingspeak</li>
+                    <li>Arduino IoT Cloud</li>
+                    <li>MQTT Protocol </li>
+                </ul>
+            <strong>Use Cases</strong>
+            <ul>
+                <li>Remote data monitoring</li>
+                <li>Smart agriculture</li>
+                <li>Home automation</li>
+                <li>Real-time notifications via mobile apps</li>
+            </ul>
+            </p>
+            </section>
+
+            <section id="project-intro">
+                <h3 data-aos="fade-up">Introduction to the Project</h3>
+                <p>This project aims to automatically control a light source based on the ambient light level using an Arduino Uno and a Light Dependent Resistor (LDR). The system detects darkness using the LDR and automatically turns on an LED, mimicking a real-world streetlight or room lighting system. </p>
+                <p>Such systems help save electricity and reduce human dependency for switching lights on/off. They are commonly implemented in street lighting, automatic night lamps, and smart homes.</p>
+                
+                <h3 id="problem" data-aos="fade-up">Problem Statement</h3>
+                <p>Manual operation of lighting systems often leads to wastage of electricity when users forget to turn off lights in daylight or when a room is unoccupied. The goal is to develop an automated system that: </p>
+                <ul>
+                    <li>Detects ambient light level</li>
+                    <li>Turns on the light in darkness</li>
+                    <li>Turns off the light during daylight</li>
+                </ul>
+                <h3 id="component" data-aos="fade-up">Components Used (with Descriptions)</h3>
+                <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Component</th>
+            <th>Quantity</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Arduino Uno</td>
+            <td>1</td>
+            <td>Microcontroller board to control the system</td>
+        </tr>
+        <tr>
+            <td>LDR</td>
+            <td>1</td>
+            <td>Light sensor that varies resistance with light</td>
+        </tr>
+        <tr>
+            <td>10kΩ Resistor</td>
+            <td>1</td>
+            <td>For voltage divider with LDR</td>
+        </tr>
+        <tr>
+            <td>220Ω Resistor</td>
+            <td>1</td>
+            <td>FLimits current through LED</td>
+        </tr>
+        <tr>
+            <td>LED</td>
+            <td>1</td>
+            <td>Light output device</td>
+        </tr>
+        <tr>
+            <td>Breadboard</td>
+            <td>1</td>
+            <td>For easy prototyping without soldering</td>
+        </tr>
+        <tr>
+            <td>Jumper Wires</td>
+            <td>~8</td>
+            <td>For making circuit connections</td>
+        </tr>
+        </tbody>
+</table>
+
+    <h3 id="circuit" data-aos="fade-up">Circuit Diagram</h3>
+    <p>The LDR and 10kΩ resistor are configured as a voltage divider. The midpoint is connected to Arduino’s analog pin A0. The LED is connected to pin 13 through a 220Ω resistor.
+        <ul>5V ---- LDR ---- A0 ---- 10kΩ ---- GND</ul>
+        <ul>Pin 13 ----> 220Ω ----> LED (+)</ul>
+        <ul>LED (-) ----> GND</ul>
+    </p> 
+    
+    <h3 id="explain" data-aos="fade-up">Code Explanation</h3>
+    <pre><code>
+int ldrPin = A0;       // LDR connected to analog pin A0    
+int ledPin = 13;       // LED connected to digital pin 13    
+int threshold = 600;   // Light threshold value  
+
+void setup() { 
+    pinMode(ledPin, OUTPUT); 
+    Serial.begin(9600); 
+} 
+void loop() { 
+    int ldrValue = analogRead(ldrPin); 
+    Serial.println(ldrValue); 
+    if (ldrValue > threshold) { 
+        digitalWrite(ledPin, HIGH); // Light ON in darkness 
+    } else { 
+        digitalWrite(ledPin, LOW);  // Light OFF in brightness 
+    } 
+delay(500); 
+} 
+    </pre></code>
+
+    <h3 id="highlight" data-aos="fade-up">Code Highlights</h3>
+    <ul>
+        <li>analogRead() to read LDR values</li>
+        <li>digitalWrite() to switch LED</li>
+        <li>Serial Monitor for debugging</li>
+    </ul>
+
+    <h3 id="sim" data-aos="fade-up">Simulation (Tinkercad Link and Screenshots)</h3>
+    <p>The circuit and code were simulated using Tinkercad:</p>
+    <a href="https://www.tinkercad.com/things/iaULcQ8KOIr-exquisite-uusam" target="_blank">View Simulation on Tinkercad</a>
+    <p>Here are some screenshots of the simulation:</p>
+    <img src="image/Tinkercad.png" alt="Tinkercad Simulation Screenshot 1" data-aos="zoom-in">
+
+    <h3 id="demo" data-aos="fade-up">Working Demo with Video</h3>
+    <p>The prototype was built on a breadboard. When ambient light is reduced (e.g., LDR covered), the LED turns on. When exposed to bright light, the LED turns off.</p>
+    <video src="video/Working.mp4" width="640" height="360" controls data-aos="zoom-in"></video>
+
+    <h3 id="app" data-aos="fade-up">Applications</h3>
+    <ul>
+        <li>Automatic street lighting</li>
+        <li>Garden and pathway lights</li>
+        <li>Indoor night lamps</li>
+        <li>Solar-powered lighting systems</li>
+        <li>Public restroom lighting automation</li>
+    </ul>
+
+    <h3 id="limit" data-aos="fade-up">Limitations and Future Scope</h3>
+    <p><strong>Limitations:</strong></p>
+    <ul>
+        <li>Sensitive to weather conditions (cloudy days)</li>
+        <li>Fixed threshold requires manual tuning</li>
+        <li>Only suitable for on/off control (no dimming)</li>
+    </ul>
+    <p><strong>Future Scope:</strong></p>
+    <ul>
+        <li>Add RTC module to work with time-based logic</li>
+        <li>Integrate with IoT platform for remote control </li>
+        <li>Use relay to control AC lights</li>
+        <li>Use PWM for dimming control</li>
+    </ul>
+
+    <h3 id="con" data-aos="fade-up">Conclusion</h3>
+    <p>This project successfully demonstrates how an Arduino Uno can be used to automate light control using an LDR sensor. It is a cost-effective and beginner-friendly project with wide real-world applications. The concepts of analog sensing, digital output control, and simulation tools like Tinkercad were effectively utilized.</p>
+    <p>In future iterations, the system can be enhanced with additional sensors, wireless communication modules, and integration with smart home platforms for improved functionality and user experience.</p>
+
+
+    <h3 id="ref" data-aos="fade-up">References</h3>
+    <p><strong>Books</strong>
+        <ul>
+            <li>Simon Monk, Programming Arduino: Getting Started with Sketches, McGraw-Hill, 2016.</li>
+            <li>Massimo Banzi & Michael Shiloh, Getting Started with Arduino, 4th Edition, Maker Media, 2022. </li>
+            <li>Michael Margolis, Arduino Cookbook, 2nd Edition, O’Reilly Media, 2011.</li>
+        </ul>
+    <strong>Website</strong>
+    <ul>
+        <li>https://www.arduino.cc - Official Arduino documentation and tutorials</li>
+        <li>https://www.tinkercad.com - Tinkercad online circuit simulator</li>
+        <li>https://www.geeksforgeeks.org - Programming and electronics concepts</li>
+    </ul></p>
+        </main>
+        
+        <aside class="project-nav">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#arduino">Arduino Platform</a></li>
+                <ul>
+                    <li><a href="#arduino-platform">Evolution of Arduino</a></li>
+                    <li><a href="#Uno">Uno Architecture</a></li>
+                    <li><a href="#GPIO">GPIO, Analog-Digital Pins and Timers</a></li>
+                    <ul>
+                        <li><a href="#GPIO1">GPIO (General Purpose Input/Output)</a></li>
+                        <li><a href="#GPIO2">Analog Pins</a></li>
+                        <li><a href="#GPIO3">Timers</a></li>
+                    </ul>
+                    <li><a href="#code">Coding with Arduino IDE</a></li>
+                    <li><a href="#project">Sample Project and Libraries</a></li>
+                    <li><a href="#sensor">Sensors and Actuators</a></li>
+                    <li><a href="#communication">Communication Protocols</a></li>
+                    <li><a href="#iot">IoT Basics</a></li>
+                </ul>
+                <li><a href="#project-intro">Project Details</a>
+                    <ul>
+                        <li><a href="#problem">Problem Statement</a></li>
+                        <li><a href="#component">Components</a></li>
+                        <li><a href="#circuit">Circuit Diagram</a></li>
+                        <li><a href="#explain">Code Explaination</a></li>
+                        <li><a href="#sim">Simulation</a></li>
+                        <li><a href="#demo">Working Demo with photo</a></li>
+                        <li><a href="#app">Applications</a></li>
+                        <li><a href="#limit">Limitation</a></li>
+                        <li><a href="#con">Conclusion</a></li>
+                        <li><a href="#ref">Reference</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="project-script1.js"></script> </body>
+</html>
